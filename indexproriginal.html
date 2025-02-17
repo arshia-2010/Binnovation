@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material Identification</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Material Identification Tool</h1>
+    <p>Upload a photo to identify the predominant material and its composition!</p>
+    
+    <!-- Image Upload Form -->
+    <form id="uploadForm" enctype="multipart/form-data">
+      <input type="file" id="imageInput" accept="image/*" required>
+      <button type="submit">Upload and Identify</button>
+    </form>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Detection Output</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #resultCanvas {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Material Detection Results</h2>
+
+    <div id="result" class="result">
+        <canvas id="resultCanvas"></canvas>
+    </div>
+    
+    <button onclick="generateImage()">Generate Image</button>
+    <button onclick="downloadImage()">Download Image</button>
+
+    <script>
+        function generateImage() {
+            const canvas = document.getElementById("resultCanvas");
+            const ctx = canvas.getContext("2d");
+
+            // Set canvas size
+            canvas.width = 500;
+            canvas.height = 300;
+
+            // Background
+            ctx.fillStyle = "#ffffff"; // White background
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Text styling
+            ctx.fillStyle = "#000000"; // Black text
+            ctx.font = "20px Arial";
+
+            // Example Data (You can dynamically change these values)
+            const predominantMaterial = "Predominant Material: Iron";
+            const otherMaterials = "Other Major Materials: Copper, Zinc";
+            const wavelength = "Wavelength: 450nm";
+
+            // Draw text on canvas
+            ctx.fillText(predominantMaterial, 50, 100);
+            ctx.fillText(otherMaterials, 50, 140);
+            ctx.fillText(wavelength, 50, 180);
+        }
+
+        function downloadImage() {
+            const canvas = document.getElementById("resultCanvas");
+            const image = canvas.toDataURL("image/png");
+
+            const link = document.createElement("a");
+            link.href = image;
+            link.download = "material_identification_result.png";
+            link.click();
+        }
+    </script>
+
+</body>
+</html>
